@@ -12,7 +12,8 @@
 #include "USART_register.h"
 #include "USART_interface.h"
 #include "USART_config.h"
-
+void UART_voidWriteNumber(u16 Copy_u16Number);
+static u16 Private_GetPower(u8 Num1, u8 Num2);
 void UARTINT_voidSetCallBack(void(*Copy_pfun)(void));
 void USART_voidInit(void)
 {
@@ -151,4 +152,34 @@ void enable_UART_Int(void)
 {
 	SET_BIT(UCSRB,UCSRB_RX); //RXCIE: RX Complete Interrupt Enable
 	SET_BIT(UCSRA,UCSRA_RXC); //RXCIE: RX Complete Interrupt Enable
+}
+
+void UART_voidWriteNumber(u16 Copy_u16Number)
+{
+	u8 Counter=0,Digits=0,Current;
+	u16 CopyNumber=Copy_u16Number;
+	while(CopyNumber)
+	{
+		CopyNumber/=10;
+		Digits++;
+	}
+	CopyNumber=Copy_u16Number;
+	for(Counter=0;Counter<Digits;Counter++)
+	{
+		Current=CopyNumber/(Private_GetPower(10,Digits-1-Counter));
+		//CLCD_voidSendData(Current+'0');
+		USART_voidSend(Current+'0');
+		CopyNumber%=(Private_GetPower(10,Digits-1-Counter));
+	}
+
+}
+static u16 Private_GetPower(u8 Num1, u8 Num2)
+{
+	u16 Result=1;
+	u8 Counter=0;
+	for(Counter=0;Counter<Num2;Counter++)
+	{
+		Result*=Num1;
+	}
+	return Result;
 }
