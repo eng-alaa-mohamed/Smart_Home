@@ -92,58 +92,49 @@ void main (void)
 void get_input(void)
 {
 	gets_UART1(Str);
+	cursor();
 	if((strncmp(Str, fanon, 5))==0)
 	{
 		DIO_u8SetPinValue (DIO_u8PORTA, DIO_u8PIN1, DIO_u8PIN_HIGH); //fan ON;
-		cursor();
 	}
 
 	else if((strncmp(Str, fanoff, 6))==0)
 	{
 		DIO_u8SetPinValue (DIO_u8PORTA, DIO_u8PIN1, DIO_u8PIN_LOW); //fan OFF
-		cursor();
 	}
 
 	else if((strncmp(Str, lighton, 7))==0)
 	{
 		DIO_u8SetPinValue (DIO_u8PORTA, DIO_u8PIN0, DIO_u8PIN_HIGH); //Light ON;
-		cursor();
 	}
 
 	else if((strncmp(Str, lightoff, 8))==0)
 	{
 		DIO_u8SetPinValue (DIO_u8PORTA, DIO_u8PIN0, DIO_u8PIN_LOW); //Light OFF;
-		cursor();
 	}
 	else if((strncmp(Str, opendoor, 8))==0)
 	{
 		Servo_Motor(90); //open door;
-		cursor();
 	}
 	else if((strncmp(Str, closedoor, 9))==0)
 	{
 		Servo_Motor(0); //close door;
-		cursor();
 	}
 	else if((strncmp(Str, smartlighton, 12))==0)
 	{
 		light_flag=1;
-		cursor();
 	}
 	else if((strncmp(Str, smartlightoff, 13))==0)
 	{
 		light_flag=0;
-		cursor();
 	}
 	else if((strncmp(Str, smartfanon, 10))==0)
 	{
 		fan_flag=1;
-		cursor();
 	}
 	else if((strncmp(Str, smartfanoff, 10))==0)
 	{
 		fan_flag=0;
-		cursor();
 	}
 	else if((strncmp(Str, exit, 4))==0)
 	{
