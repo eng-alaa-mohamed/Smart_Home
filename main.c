@@ -2,7 +2,6 @@
 /*****************************************************************/
 /****************     Author:  Alaa Mohamed       ****************/
 /****************     Layer:   Application        ****************/
-/****************     SWC:     USART              ****************/
 /****************     Version: 1.00               ****************/
 /****************     Date: 4-04-2022            ****************/
 /*****************************************************************/
@@ -24,20 +23,20 @@
 void cursor(void);
 void get_input(void);
 void pin_check (void);
-char password[]="1234";
-char lighton[]="lighton";
-char lightoff[]="lightoff";
-char fanon[]="fanon";
-char fanoff[]="fanoff";
-char opendoor[]="opendoor";
-char closedoor[]="closedoor";
-char smartlighton[]="smartlighton";
-char smartlightoff[]="smartlightoff";
-char smartfanon[]="smartfanon";
-char smartfanoff[]="smartfanoff";
+u8 password[]="1234";
+u8 lighton[]="lighton";
+u8 lightoff[]="lightoff";
+u8 fanon[]="fanon";
+u8 fanoff[]="fanoff";
+u8 opendoor[]="opendoor";
+u8 closedoor[]="closedoor";
+u8 smartlighton[]="smartlighton";
+u8 smartlightoff[]="smartlightoff";
+u8 smartfanon[]="smartfanon";
+u8 smartfanoff[]="smartfanoff";
 
-char exit[]="exit";
-int Str[8];
+u8 exit[]="exit";
+u16 Str[8];
 
 u8 light_flag=0;
 u8 fan_flag=0;

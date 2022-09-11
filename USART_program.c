@@ -52,7 +52,7 @@ void USART_voidSend(u8 Copy_u8data)
 	UDR=Copy_u8data;
 }
 
-void UART_Send_String(char* st_pt)
+void UART_Send_String(u8* st_pt)
 {
 	while(*st_pt)
 		USART_voidSend(*st_pt++);
@@ -60,7 +60,7 @@ void UART_Send_String(char* st_pt)
 
 void UART_Receive_String(u8 *command)
 {
-	char counter=0;
+	u8 counter=0;
 	while(*command)
 	{
 		counter++;
@@ -76,10 +76,10 @@ u8 USART_u8Receive(void)
 }
 
 
-const char* USART_voidReceiveString(void)
+const u8* USART_voidReceiveString(void)
 {
 	u8 local_u8Counter=0;
-	const char* Copy_pcString;
+	const u8* Copy_pcString;
 	while(GET_BIT(UCSRA,UCSRA_RXC)==0);
 
 	while(Copy_pcString[local_u8Counter]!= '\0')//an array containing the characters and terminated with a '\0' character
@@ -93,7 +93,7 @@ const char* USART_voidReceiveString(void)
 }
 
 
-void USART_voidSendString(const char* Copy_pcString)
+void USART_voidSendString(const u8* Copy_pcString)
 
 {
 	u8 local_u8Counter=0;
@@ -107,9 +107,9 @@ void USART_voidSendString(const char* Copy_pcString)
 	UDR= *Copy_pcString;
 }
 
-void gets_UART1(unsigned char *string)  //Receive a character until carriage return or newline
+void gets_UART1(unsigned u8 *string)  //Receive a character until carriage return or newline
 {
-	unsigned char i=0,J=0;
+	unsigned u8 i=0,J=0;
 	do
 	{
 		string[i]= USART_u8Receive();
@@ -121,9 +121,9 @@ void gets_UART1(unsigned char *string)  //Receive a character until carriage ret
 
 
 /*
-void gets_UART1(unsigned char *string)  //Receive a character until carriage return or newline
+void gets_UART1(unsigned u8 *string)  //Receive a character until carriage return or newline
 {
-	unsigned char i=0,J=0;
+	unsigned u8 i=0,J=0;
 	do
 	{
  *(string+i)= USART_u8Receive();
